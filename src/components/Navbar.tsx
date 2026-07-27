@@ -53,8 +53,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection 
       id="main-navbar"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md border-b border-gray-200 py-4 shadow-xs'
-          : 'bg-white py-6'
+          ? 'bg-white/95 backdrop-blur-md border-b border-gray-300 py-3.5 shadow-sm'
+          : 'bg-white/90 backdrop-blur-md border-b border-gray-200 py-5'
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -64,12 +64,12 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection 
           onClick={() => scrollToSection('home')}
           className="flex items-center gap-2 group text-left focus:outline-none cursor-pointer"
         >
-          <div className="w-8 h-8 rounded-lg bg-[#18181B] text-white flex items-center justify-center group-hover:bg-[#333333] transition-colors">
+          <div className="w-8 h-8 rounded-lg bg-black text-white flex items-center justify-center group-hover:bg-zinc-800 transition-colors shadow-xs">
             <Code2 className="w-4 h-4" />
           </div>
-          <div className="text-xl font-bold tracking-tight text-[#18181B]">
+          <div className="text-xl font-extrabold tracking-tight text-black">
             <span>Ahtesham</span>
-            <span className="text-[#333333] underline decoration-[#333333] decoration-2 underline-offset-4">.dev</span>
+            <span className="text-black underline decoration-black decoration-2 underline-offset-4">.dev</span>
           </div>
         </button>
 
@@ -82,10 +82,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection 
                 key={item.id}
                 id={`nav-link-${item.id}`}
                 onClick={() => scrollToSection(item.id)}
-                className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200 cursor-pointer ${
+                className={`px-4 py-2 text-sm rounded-lg transition-colors duration-200 cursor-pointer ${
                   isActive
-                    ? 'text-[#18181B] bg-gray-100 font-semibold'
-                    : 'text-gray-600 hover:text-[#18181B] hover:bg-gray-50'
+                    ? 'text-black bg-gray-200/90 font-extrabold border border-gray-300 shadow-2xs'
+                    : 'text-gray-800 font-bold hover:text-black hover:bg-gray-100'
                 }`}
               >
                 {item.label}
@@ -98,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection 
         <button
           id="mobile-menu-toggle-btn"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden p-2 rounded-lg bg-gray-100 text-gray-700 hover:text-black hover:bg-gray-200 focus:outline-none"
+          className="md:hidden p-2 rounded-lg bg-gray-100 text-black hover:text-black hover:bg-gray-200 focus:outline-none border border-gray-300"
           aria-label="Toggle navigation menu"
         >
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -107,7 +107,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection 
 
       {/* Mobile Drawer Navigation */}
       {isMobileMenuOpen && (
-        <div id="mobile-nav-drawer" className="md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-2">
+        <div id="mobile-nav-drawer" className="md:hidden bg-white border-b border-gray-300 px-4 pt-2 pb-6 space-y-2 shadow-md">
           {navItems.map((item) => {
             const isActive = activeSection === item.id;
             return (
@@ -115,10 +115,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection 
                 key={item.id}
                 id={`mobile-nav-link-${item.id}`}
                 onClick={() => scrollToSection(item.id)}
-                className={`block w-full text-left px-4 py-3 text-base font-medium rounded-lg transition-colors duration-200 ${
+                className={`block w-full text-left px-4 py-3 text-base rounded-lg transition-colors duration-200 ${
                   isActive
-                    ? 'text-[#18181B] bg-gray-100 font-bold'
-                    : 'text-gray-600 hover:text-black hover:bg-gray-50'
+                    ? 'text-black bg-gray-200 font-black'
+                    : 'text-gray-800 font-bold hover:text-black hover:bg-gray-100'
                 }`}
               >
                 {item.label}

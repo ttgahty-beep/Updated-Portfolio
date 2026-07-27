@@ -3,13 +3,11 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    background-color: #FFFFFF;
     color: #18181B;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   }
 
   body {
-    background-color: #FFFFFF;
     color: #18181B;
     min-height: 100vh;
     overflow-x: hidden;

@@ -84,40 +84,40 @@ ${PROJECTS_DATA.map(p => `• ${p.title}
         </div>
 
         {/* Modal Content / Resume Preview */}
-        <div className="p-6 overflow-y-auto space-y-6 text-sm text-gray-600">
+        <div className="p-6 overflow-y-auto space-y-6 text-sm text-gray-800">
           {/* Header Info */}
           <div className="border-b border-gray-200 pb-4">
-            <h4 className="text-2xl font-bold text-[#18181B]">{PERSONAL_INFO.name}</h4>
-            <p className="text-[#333333] font-semibold mt-0.5">{PERSONAL_INFO.title}</p>
-            <p className="text-xs text-gray-500 mt-2">Email: {PERSONAL_INFO.email} | GitHub: {PERSONAL_INFO.githubUrl}</p>
+            <h4 className="text-2xl font-extrabold text-black">{PERSONAL_INFO.name}</h4>
+            <p className="text-black font-bold mt-0.5">{PERSONAL_INFO.title}</p>
+            <p className="text-xs text-gray-700 font-medium mt-2">Email: {PERSONAL_INFO.email} | GitHub: {PERSONAL_INFO.githubUrl}</p>
           </div>
 
           {/* Career Objective */}
           <div>
-            <h5 className="text-[#18181B] font-bold uppercase tracking-wider text-xs mb-2 flex items-center gap-2">
+            <h5 className="text-black font-extrabold uppercase tracking-wider text-xs mb-2 flex items-center gap-2">
               <span>Career Objective</span>
             </h5>
-            <p className="text-gray-600 leading-relaxed bg-gray-50 p-3 rounded-lg border border-gray-200">
+            <p className="text-gray-800 font-medium leading-relaxed bg-gray-50 p-3.5 rounded-lg border border-gray-300">
               {PERSONAL_INFO.careerObjective}
             </p>
           </div>
 
           {/* Education */}
           <div>
-            <h5 className="text-[#18181B] font-bold uppercase tracking-wider text-xs mb-2 flex items-center gap-2">
-              <GraduationCap className="w-4 h-4 text-[#333333]" />
+            <h5 className="text-black font-extrabold uppercase tracking-wider text-xs mb-2 flex items-center gap-2">
+              <GraduationCap className="w-4 h-4 text-black" />
               <span>Education</span>
             </h5>
             {EDUCATION_DATA.map((ed, idx) => (
-              <div key={idx} className="bg-gray-50 p-3 rounded-lg border border-gray-200">
-                <div className="flex justify-between font-bold text-[#18181B]">
+              <div key={idx} className="bg-gray-50 p-3.5 rounded-lg border border-gray-300">
+                <div className="flex justify-between font-extrabold text-black">
                   <span>{ed.degree}</span>
-                  <span className="text-gray-500 text-xs font-mono">{ed.period}</span>
+                  <span className="text-gray-700 text-xs font-mono font-bold">{ed.period}</span>
                 </div>
-                <p className="text-gray-600 text-xs mt-0.5 font-medium">{ed.institution}</p>
+                <p className="text-gray-800 text-xs mt-0.5 font-bold">{ed.institution}</p>
                 <div className="mt-2 flex flex-wrap gap-1.5">
                   {ed.coursework.map((cw, i) => (
-                    <span key={i} className="text-[11px] px-2 py-0.5 rounded bg-white text-gray-700 border border-gray-200">
+                    <span key={i} className="text-[11px] px-2 py-0.5 rounded bg-white text-black font-bold border border-gray-300">
                       {cw}
                     </span>
                   ))}
@@ -128,15 +128,15 @@ ${PROJECTS_DATA.map(p => `• ${p.title}
 
           {/* Core Technical Skills */}
           <div>
-            <h5 className="text-[#18181B] font-bold uppercase tracking-wider text-xs mb-2 flex items-center gap-2">
-              <Code className="w-4 h-4 text-[#333333]" />
+            <h5 className="text-black font-extrabold uppercase tracking-wider text-xs mb-2 flex items-center gap-2">
+              <Code className="w-4 h-4 text-black" />
               <span>Technical Skills</span>
             </h5>
             <div className="flex flex-wrap gap-2">
               {SKILLS_DATA.map((skill) => (
                 <span
                   key={skill.id}
-                  className="px-2.5 py-1 text-xs rounded-md bg-gray-100 border border-gray-200 text-[#18181B] font-medium"
+                  className="px-2.5 py-1 text-xs rounded-md bg-gray-100 border border-gray-300 text-black font-bold"
                 >
                   {skill.name}
                 </span>
@@ -146,16 +146,16 @@ ${PROJECTS_DATA.map(p => `• ${p.title}
 
           {/* Featured Projects */}
           <div>
-            <h5 className="text-[#18181B] font-bold uppercase tracking-wider text-xs mb-2 flex items-center gap-2">
-              <FolderGit2 className="w-4 h-4 text-[#333333]" />
+            <h5 className="text-black font-extrabold uppercase tracking-wider text-xs mb-2 flex items-center gap-2">
+              <FolderGit2 className="w-4 h-4 text-black" />
               <span>Featured Projects</span>
             </h5>
             <div className="space-y-3">
               {PROJECTS_DATA.map((p) => (
-                <div key={p.id} className="bg-gray-50 p-3 rounded-lg border border-gray-200">
-                  <div className="font-bold text-[#18181B]">{p.title}</div>
-                  <p className="text-xs text-gray-600 mt-1">{p.description}</p>
-                  <div className="mt-2 text-xs text-[#333333] font-semibold">
+                <div key={p.id} className="bg-gray-50 p-3.5 rounded-lg border border-gray-300">
+                  <div className="font-extrabold text-black">{p.title}</div>
+                  <p className="text-xs text-gray-800 font-medium mt-1">{p.description}</p>
+                  <div className="mt-2 text-xs text-black font-bold">
                     Tech: {p.technologies.join(' • ')}
                   </div>
                 </div>

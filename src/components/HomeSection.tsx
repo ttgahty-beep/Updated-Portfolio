@@ -18,19 +18,19 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ onOpenCVModal, onNavig
           {/* Main Text & Intro Details */}
           <div className="lg:col-span-7 space-y-6 text-left">
             {/* Tagline Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-card/90 backdrop-blur-md border border-border text-xs font-bold text-foreground uppercase tracking-wider shadow-xs">
-              <span className="w-2 h-2 rounded-full bg-primary animate-ping"></span>
-              <span>Software Engineering Student</span>
-              <Sparkles className="w-3.5 h-3.5 text-primary ml-1" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-card/90 backdrop-blur-md border border-border text-xs font-extrabold text-foreground dark:text-white uppercase tracking-wider shadow-xs">
+              <span className="w-2 h-2 rounded-full bg-foreground dark:bg-white animate-ping"></span>
+              <span className="font-extrabold text-foreground dark:text-white">Software Engineering Student</span>
+              <Sparkles className="w-3.5 h-3.5 text-foreground dark:text-white ml-1" />
             </div>
 
             {/* Greeting & Name */}
             <div>
-              <p className="text-muted-foreground font-mono text-xs uppercase tracking-widest mb-1 font-bold">Portfolio & Overview</p>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-foreground tracking-tight">
+              <p className="text-foreground dark:text-white font-mono text-xs uppercase tracking-widest mb-1.5 font-extrabold">Portfolio & Overview</p>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-foreground dark:text-white tracking-tight">
                 Ahtesham
               </h1>
-              <p className="text-xl sm:text-2xl font-bold text-primary mt-2">
+              <p className="text-xl sm:text-2xl font-extrabold text-foreground dark:text-white mt-2">
                 {PERSONAL_INFO.title}
               </p>
             </div>

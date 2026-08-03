@@ -1,92 +1,100 @@
-import React from 'react';
-import { Github, ExternalLink, FolderGit2, Layers, Database, Code } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion } from 'motion/react';
+import { Layers3, Grid, FolderGit2 } from 'lucide-react';
 import { PROJECTS_DATA } from '../data/portfolioData';
+import { TechDashboardCard, TechCardData } from './TechDashboardCard';
+import { ProjectsFanCarousel } from './ProjectsFanCarousel';
 
 export const ProjectsSection: React.FC = () => {
+  const [viewMode, setViewMode] = useState<'fan' | 'grid'>('fan');
+
   return (
-    <section id="projects" className="py-20 bg-gray-50/80 backdrop-blur-sm relative border-t border-gray-300">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="projects" className="py-20 bg-muted/30 backdrop-blur-sm relative border-t border-border overflow-hidden">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <h3 className="text-xs font-extrabold text-gray-700 uppercase tracking-widest mb-2">FEATURED WORK</h3>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-black tracking-tight">
-            Software <span className="text-black underline decoration-black decoration-2 underline-offset-4">Projects</span>
+        <div className="text-center max-w-3xl mx-auto mb-10">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary text-xs font-mono font-bold text-primary border border-border mb-3">
+            <FolderGit2 className="w-3.5 h-3.5" />
+            <span>Interactive Project Showcase</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-black text-foreground tracking-tight">
+            Software <span className="text-primary underline decoration-primary decoration-2 underline-offset-4 font-black">Projects</span>
           </h2>
-          <p className="text-gray-800 mt-3 text-sm sm:text-base font-semibold">
-            Hands-on software engineering projects demonstrating object-oriented programming, algorithms, database operations, and user interface design.
+          <p className="text-muted-foreground mt-3 text-sm sm:text-base font-semibold">
+            Interactive software engineering projects with custom 3D fan animations, progress meters, tech stack tags, and repository links.
           </p>
-        </div>
 
-        {/* Project Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {PROJECTS_DATA.map((project, index) => (
-            <div
-              key={project.id}
-              id={`project-card-${project.id}`}
-              className="bg-white/95 backdrop-blur-md rounded-2xl border border-gray-300 shadow-sm hover:border-black transition-all duration-200 overflow-hidden flex flex-col justify-between group"
+          {/* View Mode Toggle Controls */}
+          <div className="mt-6 inline-flex items-center gap-1 p-1 rounded-xl bg-secondary/80 border border-border backdrop-blur-md">
+            <button
+              id="projects-view-fan-btn"
+              onClick={() => setViewMode('fan')}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-mono font-extrabold transition-all cursor-pointer ${
+                viewMode === 'fan'
+                  ? 'bg-primary text-primary-foreground shadow-sm'
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
             >
-              {/* Card Body */}
-              <div className="p-6 sm:p-8 space-y-6">
-                
-                {/* Header Tag */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-black bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300">
-                    <FolderGit2 className="w-4 h-4 text-black" />
-                    <span>Project {index + 1}</span>
-                  </div>
-                  <span className="text-xs font-mono font-bold text-gray-700">Software Engineering</span>
-                </div>
-
-                {/* Project Title */}
-                <div>
-                  <h3 className="text-2xl font-extrabold text-black group-hover:text-zinc-800 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-800 text-sm sm:text-base font-medium leading-relaxed mt-3">
-                    {project.description}
-                  </p>
-                </div>
-
-                {/* Technologies List */}
-                <div>
-                  <h4 className="text-xs font-mono text-gray-700 font-bold uppercase tracking-wider mb-2.5">
-                    Technologies Used
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 text-xs font-bold rounded-md bg-gray-100 text-black border border-gray-300"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-              </div>
-
-              {/* Card Footer with GitHub Button */}
-              <div className="p-6 sm:p-8 pt-0 border-t border-gray-200 mt-auto flex items-center justify-between">
-                <span className="text-xs text-gray-700 font-mono font-bold">Open Source Repository</span>
-                
-                <a
-                  id={`project-github-btn-${project.id}`}
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-5 py-2.5 rounded-lg bg-black hover:bg-zinc-800 text-white font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition-colors duration-200 shadow-xs cursor-pointer"
-                >
-                  <Github className="w-4 h-4 text-white" />
-                  <span>GitHub</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              </div>
-
-            </div>
-          ))}
+              <Layers3 className="w-4 h-4" />
+              <span>3D Fan View</span>
+            </button>
+            <button
+              id="projects-view-grid-btn"
+              onClick={() => setViewMode('grid')}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-mono font-extrabold transition-all cursor-pointer ${
+                viewMode === 'grid'
+                  ? 'bg-primary text-primary-foreground shadow-sm'
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              <Grid className="w-4 h-4" />
+              <span>3D Grid View</span>
+            </button>
+          </div>
         </div>
+
+        {/* Render View Mode */}
+        {viewMode === 'fan' ? (
+          <div className="w-full">
+            <ProjectsFanCarousel projects={PROJECTS_DATA} />
+          </div>
+        ) : (
+          /* Project Cards Grid with Floating Motion Effect & 3D Tilt */
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {PROJECTS_DATA.map((project, index) => {
+              const cardData: TechCardData = {
+                id: project.id,
+                date: project.date || 'Active Project',
+                title: project.title,
+                description: project.description,
+                progressPercent: project.progressPercent || 90,
+                progressValue: project.progressValue || '90% Complete',
+                technologies: project.technologies,
+                githubUrl: project.githubUrl,
+                countdownText: project.statusBadge || 'View Source',
+                colorTheme: project.colorTheme || (index % 4 === 0 ? 'emerald' : index % 4 === 1 ? 'cyan' : index % 4 === 2 ? 'violet' : 'amber'),
+              };
+
+              return (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{
+                    duration: 0.4,
+                    delay: index * 0.08,
+                    ease: 'easeOut',
+                  }}
+                  className="h-full"
+                >
+                  <TechDashboardCard data={cardData} index={index} />
+                </motion.div>
+              );
+            })}
+          </div>
+        )}
 
       </div>
     </section>

@@ -4,6 +4,8 @@ export interface Skill {
   category: 'Languages' | 'Frontend' | 'Backend' | 'Database' | 'Tools';
   description: string;
   iconName: string;
+  proficiency?: number;
+  colorTheme?: 'emerald' | 'cyan' | 'amber' | 'violet' | 'rose' | 'blue';
 }
 
 export interface Project {
@@ -13,6 +15,11 @@ export interface Project {
   technologies: string[];
   githubUrl: string;
   featured?: boolean;
+  date?: string;
+  progressPercent?: number;
+  progressValue?: string;
+  statusBadge?: string;
+  colorTheme?: 'emerald' | 'cyan' | 'amber' | 'violet' | 'rose' | 'blue';
 }
 
 export interface ContactFormData {

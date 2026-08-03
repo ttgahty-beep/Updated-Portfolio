@@ -25,15 +25,15 @@ const ParticleWave: React.FC<ParticleWaveProps> = ({ className = '' }) => {
   // Function to get background color based on theme
   const getBackgroundColor = (theme: string) => {
     return theme === 'dark' 
-      ? new THREE.Color(0x000000) // Black background for dark theme
-      : new THREE.Color(0xffffff); // White background for light theme
+      ? new THREE.Color(0x09090b) // Deep dark background #09090b
+      : new THREE.Color(0xffffff); // Clean white background #ffffff
   };
 
   // Function to get particle color based on theme
   const getParticleColor = (theme: string) => {
     return theme === 'dark' 
-      ? new THREE.Vector3(1.0, 1.0, 1.0) // White particles for dark theme
-      : new THREE.Vector3(0.0, 0.0, 0.0); // Black particles for light theme
+      ? new THREE.Vector3(0.98, 0.98, 0.98) // White particles in dark theme
+      : new THREE.Vector3(0.05, 0.05, 0.05); // Dark particles in light theme
   };
 
   const particleVertex = `
@@ -46,7 +46,7 @@ const ParticleWave: React.FC<ParticleWaveProps> = ({ className = '' }) => {
       p.x += (sin(p.y + uTime) * 0.5);
       s += (sin(p.x + uTime) * 0.5) + (cos(p.y + uTime) * 0.1) * 2.0;
       vec4 mvPosition = modelViewMatrix * vec4(p, 1.0);
-      gl_PointSize = s * 28.0 * (1.0 / -mvPosition.z);
+      gl_PointSize = s * 24.0 * (1.0 / -mvPosition.z);
       gl_Position = projectionMatrix * mvPosition;
     }
   `;
@@ -54,7 +54,7 @@ const ParticleWave: React.FC<ParticleWaveProps> = ({ className = '' }) => {
   const particleFragment = `
     uniform vec3 uColor;
     void main() {
-      gl_FragColor = vec4(uColor, 0.75);
+      gl_FragColor = vec4(uColor, 0.65);
     }
   `;
 
@@ -73,23 +73,24 @@ const ParticleWave: React.FC<ParticleWaveProps> = ({ className = '' }) => {
     // Scene
     const scene = new THREE.Scene();
 
-    // Renderer
+    // Renderer - capped pixel ratio for high FPS
     const renderer = new THREE.WebGLRenderer({
       canvas,
-      antialias: true,
+      antialias: false,
       alpha: true,
+      powerPreference: "high-performance",
     });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.setSize(winWidth, winHeight);
     
     // Set initial background color based on theme
     const currentTheme = getCurrentTheme();
     renderer.setClearColor(getBackgroundColor(currentTheme), 1);
 
-    // Particles
-    const gap = 0.3;
-    const amountX = 200;
-    const amountY = 200;
+    // Optimized Particle Grid (75x75 = 5,625 particles vs 40,000)
+    const gap = 0.5;
+    const amountX = 75;
+    const amountY = 75;
     const particleNum = amountX * amountY;
     const particlePositions = new Float32Array(particleNum * 3);
     const particleScales = new Float32Array(particleNum);
@@ -137,17 +138,21 @@ const ParticleWave: React.FC<ParticleWaveProps> = ({ className = '' }) => {
     };
   };
 
+  let cachedTheme = '';
   const animate = () => {
     if (!sceneRef.current) return;
 
     const { scene, camera, renderer, particleMaterial } = sceneRef.current;
     
-    particleMaterial.uniforms.uTime.value += 0.05;
+    particleMaterial.uniforms.uTime.value += 0.03;
     
-    // Update particle color and background based on current theme
+    // Update theme only when changed to avoid DOM query bottleneck
     const currentTheme = getCurrentTheme();
-    particleMaterial.uniforms.uColor.value = getParticleColor(currentTheme);
-    renderer.setClearColor(getBackgroundColor(currentTheme));
+    if (currentTheme !== cachedTheme) {
+      cachedTheme = currentTheme;
+      particleMaterial.uniforms.uColor.value = getParticleColor(currentTheme);
+      renderer.setClearColor(getBackgroundColor(currentTheme));
+    }
     
     camera.lookAt(scene.position);
     renderer.render(scene, camera);

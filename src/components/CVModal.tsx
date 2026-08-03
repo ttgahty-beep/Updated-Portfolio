@@ -61,22 +61,22 @@ ${PROJECTS_DATA.map(p => `• ${p.title}
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fadeIn">
       <div
         id="cv-modal-container"
-        className="bg-white border border-gray-200 rounded-2xl w-full max-w-2xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden"
+        className="bg-card border border-border rounded-2xl w-full max-w-2xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden"
       >
         {/* Modal Header */}
-        <div className="p-6 border-b border-gray-200 flex items-center justify-between bg-gray-50">
+        <div className="p-6 border-b border-border flex items-center justify-between bg-muted/50">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-gray-200 text-[#18181B]">
+            <div className="p-2 rounded-lg bg-secondary text-primary">
               <FileText className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="text-xl font-bold text-[#18181B]">{PERSONAL_INFO.name}'s Resume</h3>
-              <p className="text-xs text-[#333333] font-semibold">{PERSONAL_INFO.title}</p>
+              <h3 className="text-xl font-bold text-card-foreground">{PERSONAL_INFO.name}'s Resume</h3>
+              <p className="text-xs text-muted-foreground font-semibold">{PERSONAL_INFO.title}</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 text-gray-500 hover:text-black rounded-lg hover:bg-gray-200 transition-colors cursor-pointer"
+            className="p-2 text-muted-foreground hover:text-foreground rounded-lg hover:bg-secondary transition-colors cursor-pointer"
             aria-label="Close CV Modal"
           >
             <X className="w-5 h-5" />
@@ -84,40 +84,40 @@ ${PROJECTS_DATA.map(p => `• ${p.title}
         </div>
 
         {/* Modal Content / Resume Preview */}
-        <div className="p-6 overflow-y-auto space-y-6 text-sm text-gray-800">
+        <div className="p-6 overflow-y-auto space-y-6 text-sm text-foreground">
           {/* Header Info */}
-          <div className="border-b border-gray-200 pb-4">
-            <h4 className="text-2xl font-extrabold text-black">{PERSONAL_INFO.name}</h4>
-            <p className="text-black font-bold mt-0.5">{PERSONAL_INFO.title}</p>
-            <p className="text-xs text-gray-700 font-medium mt-2">Email: {PERSONAL_INFO.email} | GitHub: {PERSONAL_INFO.githubUrl}</p>
+          <div className="border-b border-border pb-4">
+            <h4 className="text-2xl font-extrabold text-foreground">{PERSONAL_INFO.name}</h4>
+            <p className="text-primary font-bold mt-0.5">{PERSONAL_INFO.title}</p>
+            <p className="text-xs text-muted-foreground font-medium mt-2">Email: {PERSONAL_INFO.email} | GitHub: {PERSONAL_INFO.githubUrl}</p>
           </div>
 
           {/* Career Objective */}
           <div>
-            <h5 className="text-black font-extrabold uppercase tracking-wider text-xs mb-2 flex items-center gap-2">
+            <h5 className="text-primary font-extrabold uppercase tracking-wider text-xs mb-2 flex items-center gap-2">
               <span>Career Objective</span>
             </h5>
-            <p className="text-gray-800 font-medium leading-relaxed bg-gray-50 p-3.5 rounded-lg border border-gray-300">
+            <p className="text-foreground/90 font-medium leading-relaxed bg-muted/60 p-3.5 rounded-lg border border-border">
               {PERSONAL_INFO.careerObjective}
             </p>
           </div>
 
           {/* Education */}
           <div>
-            <h5 className="text-black font-extrabold uppercase tracking-wider text-xs mb-2 flex items-center gap-2">
-              <GraduationCap className="w-4 h-4 text-black" />
+            <h5 className="text-primary font-extrabold uppercase tracking-wider text-xs mb-2 flex items-center gap-2">
+              <GraduationCap className="w-4 h-4 text-primary" />
               <span>Education</span>
             </h5>
             {EDUCATION_DATA.map((ed, idx) => (
-              <div key={idx} className="bg-gray-50 p-3.5 rounded-lg border border-gray-300">
-                <div className="flex justify-between font-extrabold text-black">
+              <div key={idx} className="bg-muted/60 p-3.5 rounded-lg border border-border">
+                <div className="flex justify-between font-extrabold text-foreground">
                   <span>{ed.degree}</span>
-                  <span className="text-gray-700 text-xs font-mono font-bold">{ed.period}</span>
+                  <span className="text-muted-foreground text-xs font-mono font-bold">{ed.period}</span>
                 </div>
-                <p className="text-gray-800 text-xs mt-0.5 font-bold">{ed.institution}</p>
+                <p className="text-primary text-xs mt-0.5 font-bold">{ed.institution}</p>
                 <div className="mt-2 flex flex-wrap gap-1.5">
                   {ed.coursework.map((cw, i) => (
-                    <span key={i} className="text-[11px] px-2 py-0.5 rounded bg-white text-black font-bold border border-gray-300">
+                    <span key={i} className="text-[11px] px-2 py-0.5 rounded bg-card text-foreground font-bold border border-border">
                       {cw}
                     </span>
                   ))}
@@ -128,15 +128,15 @@ ${PROJECTS_DATA.map(p => `• ${p.title}
 
           {/* Core Technical Skills */}
           <div>
-            <h5 className="text-black font-extrabold uppercase tracking-wider text-xs mb-2 flex items-center gap-2">
-              <Code className="w-4 h-4 text-black" />
+            <h5 className="text-primary font-extrabold uppercase tracking-wider text-xs mb-2 flex items-center gap-2">
+              <Code className="w-4 h-4 text-primary" />
               <span>Technical Skills</span>
             </h5>
             <div className="flex flex-wrap gap-2">
               {SKILLS_DATA.map((skill) => (
                 <span
                   key={skill.id}
-                  className="px-2.5 py-1 text-xs rounded-md bg-gray-100 border border-gray-300 text-black font-bold"
+                  className="px-2.5 py-1 text-xs rounded-md bg-secondary border border-border text-secondary-foreground font-bold"
                 >
                   {skill.name}
                 </span>
@@ -146,16 +146,16 @@ ${PROJECTS_DATA.map(p => `• ${p.title}
 
           {/* Featured Projects */}
           <div>
-            <h5 className="text-black font-extrabold uppercase tracking-wider text-xs mb-2 flex items-center gap-2">
-              <FolderGit2 className="w-4 h-4 text-black" />
+            <h5 className="text-primary font-extrabold uppercase tracking-wider text-xs mb-2 flex items-center gap-2">
+              <FolderGit2 className="w-4 h-4 text-primary" />
               <span>Featured Projects</span>
             </h5>
             <div className="space-y-3">
               {PROJECTS_DATA.map((p) => (
-                <div key={p.id} className="bg-gray-50 p-3.5 rounded-lg border border-gray-300">
-                  <div className="font-extrabold text-black">{p.title}</div>
-                  <p className="text-xs text-gray-800 font-medium mt-1">{p.description}</p>
-                  <div className="mt-2 text-xs text-black font-bold">
+                <div key={p.id} className="bg-muted/60 p-3.5 rounded-lg border border-border">
+                  <div className="font-extrabold text-foreground">{p.title}</div>
+                  <p className="text-xs text-muted-foreground font-medium mt-1">{p.description}</p>
+                  <div className="mt-2 text-xs text-primary font-bold">
                     Tech: {p.technologies.join(' • ')}
                   </div>
                 </div>
@@ -165,23 +165,23 @@ ${PROJECTS_DATA.map(p => `• ${p.title}
         </div>
 
         {/* Modal Footer / Actions */}
-        <div className="p-4 border-t border-gray-200 bg-gray-50 flex items-center justify-between">
-          <span className="text-xs text-gray-500">Plain text resume file ready for download</span>
+        <div className="p-4 border-t border-border bg-muted/50 flex items-center justify-between">
+          <span className="text-xs text-muted-foreground">Plain text resume file ready for download</span>
           <div className="flex items-center gap-3">
             <button
               onClick={onClose}
-              className="px-4 py-2 text-sm text-gray-600 hover:text-black font-medium transition-colors cursor-pointer"
+              className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground font-medium transition-colors cursor-pointer"
             >
               Close
             </button>
             <button
               id="download-cv-modal-btn"
               onClick={handleDownloadCV}
-              className="px-5 py-2.5 text-xs font-bold uppercase tracking-wider rounded-lg bg-[#18181B] text-white hover:bg-[#333333] flex items-center gap-2 transition-colors duration-200 cursor-pointer shadow-2xs"
+              className="px-5 py-2.5 text-xs font-bold uppercase tracking-wider rounded-lg bg-primary text-primary-foreground hover:opacity-90 flex items-center gap-2 transition-all duration-200 cursor-pointer shadow-2xs"
             >
               {downloaded ? (
                 <>
-                  <CheckCircle2 className="w-4 h-4 text-white" />
+                  <CheckCircle2 className="w-4 h-4 text-primary-foreground" />
                   <span>Downloaded!</span>
                 </>
               ) : (

@@ -53,8 +53,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection 
       id="main-navbar"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md border-b border-gray-300 py-3.5 shadow-sm'
-          : 'bg-white/90 backdrop-blur-md border-b border-gray-200 py-5'
+          ? 'bg-card/95 backdrop-blur-md border-b border-border py-3.5 shadow-xs'
+          : 'bg-card/80 backdrop-blur-md border-b border-border/50 py-5'
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -64,12 +64,12 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection 
           onClick={() => scrollToSection('home')}
           className="flex items-center gap-2 group text-left focus:outline-none cursor-pointer"
         >
-          <div className="w-8 h-8 rounded-lg bg-black text-white flex items-center justify-center group-hover:bg-zinc-800 transition-colors shadow-xs">
+          <div className="w-8 h-8 rounded-lg bg-primary text-primary-foreground flex items-center justify-center group-hover:opacity-90 transition-opacity shadow-xs">
             <Code2 className="w-4 h-4" />
           </div>
-          <div className="text-xl font-extrabold tracking-tight text-black">
+          <div className="text-xl font-extrabold tracking-tight text-foreground">
             <span>Ahtesham</span>
-            <span className="text-black underline decoration-black decoration-2 underline-offset-4">.dev</span>
+            <span className="text-primary underline decoration-primary decoration-2 underline-offset-4">.dev</span>
           </div>
         </button>
 
@@ -84,8 +84,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection 
                 onClick={() => scrollToSection(item.id)}
                 className={`px-4 py-2 text-sm rounded-lg transition-colors duration-200 cursor-pointer ${
                   isActive
-                    ? 'text-black bg-gray-200/90 font-extrabold border border-gray-300 shadow-2xs'
-                    : 'text-gray-800 font-bold hover:text-black hover:bg-gray-100'
+                    ? 'text-primary-foreground bg-primary font-bold shadow-2xs'
+                    : 'text-foreground font-semibold hover:bg-secondary hover:text-secondary-foreground'
                 }`}
               >
                 {item.label}
@@ -98,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection 
         <button
           id="mobile-menu-toggle-btn"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden p-2 rounded-lg bg-gray-100 text-black hover:text-black hover:bg-gray-200 focus:outline-none border border-gray-300"
+          className="md:hidden p-2 rounded-lg bg-secondary text-secondary-foreground hover:bg-accent focus:outline-none border border-border"
           aria-label="Toggle navigation menu"
         >
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -107,7 +107,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection 
 
       {/* Mobile Drawer Navigation */}
       {isMobileMenuOpen && (
-        <div id="mobile-nav-drawer" className="md:hidden bg-white border-b border-gray-300 px-4 pt-2 pb-6 space-y-2 shadow-md">
+        <div id="mobile-nav-drawer" className="md:hidden bg-card border-b border-border px-4 pt-2 pb-6 space-y-2 shadow-md">
           {navItems.map((item) => {
             const isActive = activeSection === item.id;
             return (
@@ -117,8 +117,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection 
                 onClick={() => scrollToSection(item.id)}
                 className={`block w-full text-left px-4 py-3 text-base rounded-lg transition-colors duration-200 ${
                   isActive
-                    ? 'text-black bg-gray-200 font-black'
-                    : 'text-gray-800 font-bold hover:text-black hover:bg-gray-100'
+                    ? 'text-primary-foreground bg-primary font-extrabold'
+                    : 'text-foreground font-semibold hover:bg-secondary'
                 }`}
               >
                 {item.label}

@@ -115,37 +115,4 @@ npm run start
 
 ---
 
-## 🌐 API Endpoints
-
-### `POST /api/contact`
-
-Receives contact form submissions.
-
-**Request Body**:
-```json
-{
-  "name": "Alex Smith",
-  "email": "alex@example.com",
-  "message": "Hello Ahtesham, I would like to discuss an engineering opportunity."
-}
-```
-
-**Success Response (200 OK)**:
-```json
-{
-  "success": true,
-  "message": "Thank you, Alex Smith! Your message has been sent successfully. I will get back to you soon."
-}
-```
-
-**Error Response (400 Bad Request)**:
-```json
-{
-  "success": false,
-  "message": "Please enter a valid email address."
-}
-```
-
----
-
 © 2026 Ahtesham - Software Engineering Student Portfolio
